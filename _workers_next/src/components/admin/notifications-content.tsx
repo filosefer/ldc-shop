@@ -38,16 +38,7 @@ export function NotificationsContent({ settings }: NotificationsContentProps) {
     const [isTestingEmail, setIsTestingEmail] = useState(false)
     const [testEmail, setTestEmail] = useState('')
 
-    // Sync state with props when they change (e.g. after revalidatePath)
-    useEffect(() => {
-        setToken(settings.telegramBotToken || '')
-        setChatId(settings.telegramChatId || '')
-        setLanguage(settings.telegramLanguage || 'zh')
-        setResendApiKey(settings.resendApiKey || '')
-        setResendFromEmail(settings.resendFromEmail || '')
-        setResendFromName(settings.resendFromName || '')
-        setResendEnabled(settings.resendEnabled || false)
-    }, [settings])
+
 
     async function handleSave(formData: FormData) {
         setIsLoading(true)
