@@ -43,7 +43,7 @@ export default function ProductForm({ product, categories = [] }: { product?: an
                 <CardTitle>{product ? t('admin.productForm.editTitle') : t('admin.productForm.addTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
-                <form action={handleSubmit} className="space-y-4">
+                <form action={handleSubmit} className="space-y-5">
                     {product && <input type="hidden" name="id" value={product.id} />}
 
                     <div className="grid gap-2">
@@ -100,6 +100,23 @@ export default function ProductForm({ product, categories = [] }: { product?: an
                                 <option key={c.name} value={c.name} />
                             ))}
                         </datalist>
+                    </div>
+
+                    <div className="grid gap-2">
+                        <Label htmlFor="visibilityLevel">{t('admin.productForm.visibilityLabel')}</Label>
+                        <select
+                            id="visibilityLevel"
+                            name="visibilityLevel"
+                            defaultValue={String(product?.visibilityLevel ?? -1)}
+                            className="h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2"
+                        >
+                            <option value="-1">{t('admin.productForm.visibilityAll')}</option>
+                            <option value="0">{t('admin.productForm.visibilityLevel0')}</option>
+                            <option value="1">{t('admin.productForm.visibilityLevel1')}</option>
+                            <option value="2">{t('admin.productForm.visibilityLevel2')}</option>
+                            <option value="3">{t('admin.productForm.visibilityLevel3')}</option>
+                        </select>
+                        <p className="text-xs text-muted-foreground">{t('admin.productForm.visibilityHint')}</p>
                     </div>
 
                     <div className="flex items-center space-x-2">

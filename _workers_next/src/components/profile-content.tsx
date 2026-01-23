@@ -26,6 +26,7 @@ interface ProfileContentProps {
         username: string | null
         avatar: string | null
         email: string | null
+        trustLevel?: number
     }
     points: number
     checkinEnabled: boolean
@@ -195,7 +196,10 @@ export function ProfileContent({ user, points, checkinEnabled, orderStats, notif
                             {user.username && (
                                 <p className="text-sm text-muted-foreground">@{user.username}</p>
                             )}
-                            <p className="text-xs text-muted-foreground mt-1">ID: {user.id}</p>
+                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                                <span>ID: {user.id}</span>
+                                <Badge variant="outline" className="text-xs">{t('profile.trustLevel')}: {Number.isFinite(Number(user.trustLevel)) ? user.trustLevel : 0}</Badge>
+                            </div>
                         </div>
                     </div>
                 </CardContent>
