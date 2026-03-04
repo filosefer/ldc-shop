@@ -102,6 +102,18 @@
 
 4. 点击 **Deploy**
 
+#### 自动部署未触发？快速排查
+
+如果你已经推送了代码但 Cloudflare 没有自动开始新构建，可按下面检查：
+
+1. 确认项目类型是 **Workers Builds**（不是 Pages）。
+2. 确认 Git 仓库监听分支与实际推送分支一致（例如都为 `main`）。
+3. 确认改动发生在 **Path = `_workers_next`** 目录内（路径外改动可能不会触发此项目构建）。
+4. 确认构建命令/部署命令仍为：
+   - Build: `npm install && npx opennextjs-cloudflare build`
+   - Deploy: `npx wrangler deploy`
+5. 若以上都正确仍未触发，可在 Cloudflare Dashboard 里断开并重新连接一次 Git 仓库授权。
+
 #### 3. 绑定 D1 数据库
 
 **如果你使用了默认数据库名 `ldc-shop-next`**，数据库会自动绑定，可以跳过此步骤。
